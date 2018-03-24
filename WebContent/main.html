@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>校园旧货交易系统</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="js/main1.js"></script>
+<script type="text/javascript" src="js/main2.js"></script>
+<!-- <script type="text/javascript" src="js/mian3.js"></script>-->
+
+</head>
+<body>
+<div class="top"></div>
+	<div id="header">
+		<div class="logo">校园旧货交易系统</div>
+		<div class="navigation">
+		<span id="welcome"></span>
+			<ul>
+				<li>欢迎您！</li>
+				<li><a href="index.html" id="dengru">登入</a></li>
+				<li><a  id="Username3" style="display:none"></a></li>
+				<li><a href="index.html" id="exit" >退出</a></li>	
+			</ul>
+		</div>
+	</div>
+	
+	<div id="content">
+		<div class="left_menu">
+			<ul id="nav_dot">
+				<li>
+					<h4 class="M1" Onclick="getmyxinxi()">个人信息</h4>	
+				</li>
+				<li>
+					<h4 class="M1" Onclick="findGood1()">出售物品</h4>	
+				</li>
+				<li>
+					<h4 class="M1"  Onclick="getallGoods()">所有物品</h4>		
+				</li>
+				<li>
+					<h4 class="M1"    Onclick="getBuyjilv()">购买记录</h4>					
+				</li>			
+			</ul>
+		</div>
+		<div class="m-right">
+		<div class="main">
+
+		<!-- 编辑用户信息 -->
+				<div id="editMyxinxi" style="display:none">
+					<table class="table table-bordered">
+						<caption class="text-left">&nbsp;&nbsp;编辑用户信息</caption>
+						<tr class="text-center">
+							<td>用户名</td><td class="text-left"><input type="text" id="editUsername"></td>
+						</tr>
+						<tr class="text-center">
+							<td>用户电话</td><td class="text-left"><input  type="text" id="editPhone"></td>
+						</tr>
+						<tr class="text-center">
+							<td>用户地址</td><td class="text-left"><input  type="text" id="editAddress"></td>
+						</tr>
+					</table>
+					<div style="margin-left:240px">
+						<input type="button" id="saveMyxinxi"  Onclick="saveMyxinxi()"  value="保存" />
+					</div>
+				</div>
+					
+     <!-- 需出售物品div -->
+				<div id="findGood2" >
+					<div class="search">
+						<form class="form-inline" style="text-align: center">
+							
+							<input type="text" class="form-control" id="deleteGoodsname">
+							<input type="button" id="searchBtn" value="Delete" onclick="deleteBook()"/>
+							<input type="button" id="searchBtn" value="refresh" onclick="myrefresh()"/>
+							<input type="button" id="searchBtn" value="Update" onclick="updateBook()"/>
+							<input type="button" id="searchBtn" value="Insert" onclick="insertBook()"/>
+						<!--  <input type="text" class="form-control" id="updateGoodsname"style="width:150px; ">
+							-->
+						</form>
+					</div>
+					<table id="Book-table" class="table table-bordered">
+						<tr>
+							<th class="text-center">物品编号</th>
+							<th class="text-center">物品名称</th>
+							<th class="text-center">物品价格(元)</th>
+							<th class="text-center">物品型号</th>
+							<th class="text-center">物品用途</th>
+						</tr>
+					</table>
+					<div id="page" class="text-center"></div>
+				</div>
+
+			<!-- 全部物品 div -->
+				<div id="getAllGoods" style="display: none">
+				<table id="order-table" class="table table-bordered">
+						<tr>
+							<th class="text-center">物品编号</th>
+							<th class="text-center">物品名称</th>
+							<th class="text-center">物品价格(元)</th>
+							<th class="text-center">物品型号</th>
+							<th class="text-center">物品用途</th>
+							<th class="text-center">操作</th>              
+						</tr>
+					</table>
+					<div id="page2" class="text-center"></div>
+				</div>
+
+		<!-- 购买记录 div -->
+				<div id="getBuyGoodsjilu" style="display:none">
+				<table id="yijingbuy-table" class="table table-bordered">
+						<tr>
+							<th class="text-center">订单编号</th>
+							<th class="text-center">买家</th>
+							<th class="text-center">货物名称</th>
+							<!--  <th class="text-center">完成</th>	-->
+						</tr>
+					</table>
+					<div id="page2" class="text-center"></div>
+				</div>
+				
+			<!-- 增加物品信息-->
+				<div id="getbuycar" style="display: none" >
+				<table class="table table-bordered">
+						<caption class="text-left">&nbsp;&nbsp;物品信息</caption>
+						<tr class="text-center">
+							<td>物品名称</td><td class="text-left"><input type="text" id="Goodsname"></td>
+						</tr>
+						<tr class="text-center">
+							<td>物品价格(元)</td><td class="text-left"><input   type="text" id="Goodsprice1"></td>
+						</tr>
+						<tr class="text-center">
+							<td>性能</td><td class="text-left"><input  type="text" id="Username1"></td>
+						</tr>
+						<tr class="text-center">
+							<td>用途</td><td class="text-left"><input  type="text" id="data1"></td>
+						</tr>
+						<tr class="text-center">
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" id="searchBtn" value="Insert" onclick="insertBook1()"/>
+							</td>
+						</tr>
+						</table>
+				</div>	
+		 <!--编辑goods信息-->
+				<div id="editgoodsxinxi" style="display:none">
+					<table class="table table-bordered">
+						<caption class="text-left">&nbsp;&nbsp;物品信息</caption>
+						<tr class="text-center">
+							<td>物品编号</td><td class="text-left"><input type="text" id="id"></td>
+						</tr>
+						<tr class="text-center">
+							<td>物品名称</td><td class="text-left"><input type="text" id="name"></td>
+						</tr>
+						<tr class="text-center">
+							<td>物品价格(元)</td><td class="text-left"><input   type="text" id="price1"></td>
+						</tr>
+						<tr class="text-center">
+							<td>性能</td><td class="text-left"><input  type="text" id="name1"></td>
+						</tr>
+						<tr class="text-center">
+							<td>用途</td><td class="text-left"><input  type="text" id="ta1"></td>
+						</tr>
+						<tr class="text-center">
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" id="searchBtn" value="Update" onclick="updateBook1()"/>
+							</td>
+						</tr>
+						</table></div> 
+						
+		<!-- 查看购买的详细信息 
+				<div id="buygoodsxinxi" style="display:none">
+					<table class="table table-bordered">
+						<caption class="text-left">&nbsp;&nbsp;物品信息</caption>
+						<tr class="text-center">
+							<td>物品名称</td><td class="text-left"><input disabled type="text" id="Goodsname3"></td>
+						</tr>
+						<tr class="text-center">
+							<td>物品信息</td><td class="text-left"><input disabled type="text" id="Goodsxinxi3"></td>
+						</tr>
+						<tr class="text-center">
+							<td>物品价格(元)</td><td class="text-left"><input  disabled type="text" id="Goodsprice3"></td>
+						</tr>
+						<tr class="text-center">
+							<td>出售人</td><td class="text-left"><input disabled type="text" id="username3"></td>
+						</tr>
+						<tr class="text-center">
+							<td>出售时间</td><td class="text-left"><input disabled type="text" id="data3"></td>
+						</tr>
+						<tr class="text-center">
+							<td>出售人电话</td><td class="text-left"><input disabled type="text" id="Phone3"></td>
+						</tr>
+						<tr class="text-center">
+							<td>出售人地址</td><td class="text-left"><input disabled type="text" id="Address3"></td>
+						</tr>
+						<tr class="text-center">
+							<td>我的地址</td><td class="text-left"><input disabled type="text" id="myaddress3"></td>
+						</tr>
+						<tr class="text-center">
+							<td>我的电话</td><td class="text-left"><input disabled type="text" id="myphone3"></td>
+						</tr>
+						<tr class="text-center">
+							<td>购买时间</td><td class="text-left"><input disabled type="text" id="buydate3"></td>
+						</tr></table>
+				</div>	-->
+				<!-- 查看自己出售的详细信息 
+				<div id="selledgoodsxinxi" style="display:none">
+					<table class="table table-bordered">
+						<caption class="text-left">&nbsp;&nbsp;物品信息</caption>
+						<tr class="text-center">
+							<td>物品名称</td><td class="text-left"><input disabled type="text" id="Goodsname4"></td>
+						</tr>
+						<tr class="text-center">
+							<td>物品信息</td><td class="text-left"><input disabled type="text" id="Goodsxinxi4"></td>
+						</tr>
+						<tr class="text-center">
+							<td>物品价格(元)</td><td class="text-left"><input  disabled type="text" id="Goodsprice4"></td>
+						</tr>
+						<tr class="text-center">
+							<td>购买人</td><td class="text-left"><input disabled type="text" id="username4"></td>
+						</tr>
+						<tr class="text-center">
+							<td>出售时间</td><td class="text-left"><input disabled type="text" id="data4"></td>
+						</tr>
+						<tr class="text-center">
+							<td>购买人电话</td><td class="text-left"><input disabled type="text" id="Phone4"></td>
+						</tr>
+						<tr class="text-center">
+							<td>我的地址</td><td class="text-left"><input disabled type="text" id="Address4"></td>
+						</tr>
+						<tr class="text-center">
+							<td>我的地址</td><td class="text-left"><input disabled type="text" id="myaddress4"></td>
+						</tr>
+						<tr class="text-center">
+							<td>我的电话</td><td class="text-left"><input disabled type="text" id="myphone4"></td>
+						</tr>
+						<tr class="text-center">
+							<td>购买时间</td><td class="text-left"><input disabled type="text" id="buydate4"></td>
+						</tr>
+						</table></div>-->			
+		<!-- 卖Goods 
+				<div id="sellGoods" style="display:none">
+					<table class="table table-bordered">
+						<caption class="text-left">&nbsp;&nbsp;物品信息</caption>
+						<tr class="text-center">
+							<td>物品名称</td><td class="text-left"><input  type="text" id="Goodsname2"></td>
+						</tr>
+						<tr class="text-center">
+							<td>物品信息</td><td class="text-left"><input  type="text" id="Goodsxinxi2"></td>
+						</tr>
+						<tr class="text-center">
+							<td>物品价格(元)</td><td class="text-left"><input   type="text" id="Goodsprice2"></td>
+						</tr>
+					</table>
+					<div style="margin-left:240px">
+						<input type="button" id="sellGoodsxinxi" value="发布"  Onclick="fabu()"/>
+					</div>
+				</div>-->
+			<!-- main end -->
+		</div>
+	</div>
+</body>
+</html>
